@@ -1,5 +1,18 @@
 {% extends "base.html" %}
-
 {% block content %}
-<div>Hello!</div>
+{% if products %}
+  <ul class="thumbnails">
+  {% for p in products %}
+    <li>
+      <a class="thumbnail span3" href="{{ p.product.link }}"><img src="{{ p.product.images.0.link }}" /></a>
+      <div class="caption">
+      <div>{{ p.product.title }}</div>
+      <div>{{ p.product.description }}</div>
+      </div>
+    </li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <div>No items found.</div>
+{% endif %}
 {% endblock %}
