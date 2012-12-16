@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 {% if products %}
+
+{% if pagination %}
+{% include "pagination.html" %}
+{% endif %}
+
   <ul class="thumbnails">
   {% for p in products %}
     <li class="span2">
@@ -8,7 +13,7 @@
         <a class="thumbnail" href="{{ p.product.link }}"><img src="{{ p.product.images.0.link }}" /></a>
         <div class="caption">
           <div class="title">{{ p.product.title }}</div>
-
+          <div class="price">{{ p.product.inventories.0.price }}</div>
           <div class="store">{{ p.product.author.name }}</div>
         </div><!--caption-->
       </div>
@@ -16,7 +21,9 @@
   {% endfor %}
   </ul>
 
-  {% include "pagination.html" %}
+{% if pagination %}
+{% include "pagination.html" %}
+{% endif %}
 
 {% else %}
   <div>No items found.</div>

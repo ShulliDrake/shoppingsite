@@ -1,9 +1,8 @@
-.thumbnails li { height:300px; }
-li a.thumbnail { height:200px; }
-li a.thumbnail img { max-height:100%; }
+.thumbnails li { height:200px; }
+li a.thumbnail { height:100px; padding:0; overflow:hidden; }
 
-.caption { }
-.caption .title { font-weight:bold; font-size:0.9em; }
+.caption { text-shadow:1px 1px 1px #ddd; font-size:0.8em; }
+.caption .title { font-weight:bold; font-size:1.2em; }
 .caption .title, .caption .store { line-height:normal; text-overflow:ellipsis; white-space:nowrap; overflow:hidden; }
 .caption .description { padding:0 10px; }
 .caption .store { }
