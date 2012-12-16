@@ -3,15 +3,21 @@
 {% if products %}
   <ul class="thumbnails">
   {% for p in products %}
-    <li>
-      <a class="thumbnail span3" href="{{ p.product.link }}"><img src="{{ p.product.images.0.link }}" /></a>
-      <div class="caption">
-      <div>{{ p.product.title }}</div>
-      <div>{{ p.product.description }}</div>
+    <li class="span2">
+      <div class="thumbnail">
+        <a class="thumbnail" href="{{ p.product.link }}"><img src="{{ p.product.images.0.link }}" /></a>
+        <div class="caption">
+          <div class="title">{{ p.product.title }}</div>
+
+          <div class="store">{{ p.product.author.name }}</div>
+        </div><!--caption-->
       </div>
     </li>
   {% endfor %}
   </ul>
+
+  {% include "pagination.html" %}
+
 {% else %}
   <div>No items found.</div>
 {% endif %}

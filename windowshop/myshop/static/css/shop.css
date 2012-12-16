@@ -1,0 +1,9 @@
+.thumbnails li { height:300px; }
+li a.thumbnail { height:200px; }
+li a.thumbnail img { max-height:100%; }
+
+.caption { }
+.caption .title { font-weight:bold; font-size:0.9em; }
+.caption .title, .caption .store { line-height:normal; text-overflow:ellipsis; white-space:nowrap; overflow:hidden; }
+.caption .description { padding:0 10px; }
+.caption .store { }

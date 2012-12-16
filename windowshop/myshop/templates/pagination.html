@@ -1,0 +1,7 @@
+<div class="pagination">
+  <ul>
+    {% for page in pagination %}
+    <li{% ifequal forloop.counter currentPage %} class="disabled"{% endifequal %}><a href="/{{ forloop.counter }}">{{ forloop.counter }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
