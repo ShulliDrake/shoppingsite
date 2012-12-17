@@ -6,6 +6,15 @@
 {% include "pagination.html" %}
 {% endif %}
 
+  <div class="search">
+    <form class="form-search">
+      <input type="text" name="q" value="" placeholder="What are you looking for?" />
+      <button class="btn" type="submit">Search!</button>
+    </form>
+  </div>
+
+  <div class="clearfix"></div>
+
   <ul class="thumbnails">
   {% for p in products %}
     <li class="span2">
