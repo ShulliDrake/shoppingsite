@@ -4,16 +4,27 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 import requests
+import urllib
 
 
-def myshop(request, page=1):
+def myshop(request, keywords=None, page=1):
 
+    # Get configuration values
     api_key = settings.API_KEY
     base_api = settings.API_PATH
     items_per_page = settings.API_ITEMS_PER_PAGE
     start_index = items_per_page * int(page)
-    api = base_api % ("JP", "preserved+flower", start_index, items_per_page)  # county code, query, start index, max results
 
+    # Check user requested keywords
+    if request.GET.get('q'):
+        keywords = request.GET.get('q', '')
+        if isinstance(keywords, unicode):
+            keywords = keywords.encode("utf-8", "ignore")
+            keywords = urllib.quote_plus(keywords)
+    else:
+        keywords = "pink+flower"
+
+    api = base_api % ("JP", keywords, start_index, items_per_page)  # county code, query, start index, max results
 
     r = requests.get(api)
     products = r.json.get('items')
