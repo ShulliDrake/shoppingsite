@@ -1,0 +1,20 @@
+{% load get_setting %}
+
+  <section class="browse">
+    <div class="heading">Browse by Categories</div>
+    {% get_setting "PRODUCT_CATEGORIES" as categories %}
+
+    <ul class="nav nab-list">
+    {% for category in categories %}
+
+      <li class=""><a href="?q={{ category }}">{{ category }}</a>
+        <ul class="sublist">
+          <li><a href="#">item1</a></li>
+          <li><a href="#">item2</a></li>
+        </ul>
+      </li>
+
+    {% endfor %}
+    </ul>
+
+  </section>

@@ -1,3 +1,4 @@
+ul { list-style:none; }
 .search { margin:15px 0; }
 .thumbnails li { height:200px; }
 li a.thumbnail { height:100px; padding:0; overflow:hidden; }
@@ -7,3 +8,9 @@ li a.thumbnail { height:100px; padding:0; overflow:hidden; }
 .caption .title, .caption .store { line-height:normal; text-overflow:ellipsis; white-space:nowrap; overflow:hidden; }
 .caption .description { padding:0 10px; }
 .caption .store { }
+
+.browse { clear:right; }
+.browse .heading { font-weight:bold; }
+.browse ul { width:120px;}
+.browse .sublist { display:none; }
+.browse ul li a { border-bottom:1px solid #e5e5e5; padding:3px 0 0; }

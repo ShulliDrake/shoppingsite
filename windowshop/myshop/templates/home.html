@@ -2,9 +2,9 @@
 {% block content %}
 {% if products %}
 
-{% if pagination %}
-{% include "pagination.html" %}
-{% endif %}
+  {% if pagination %}
+  {% include "pagination.html" %}
+  {% endif %}
 
   <div class="search">
     <form class="form-search" method="GET" action="/">
@@ -30,9 +30,11 @@
   {% endfor %}
   </ul>
 
-{% if pagination %}
-{% include "pagination.html" %}
-{% endif %}
+  {% if pagination %}
+  {% include "pagination.html" %}
+  {% endif %}
+
+  {% include "browse.html" %}
 
 {% else %}
   <div>No items found.</div>
