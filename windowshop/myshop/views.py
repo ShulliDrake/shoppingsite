@@ -16,10 +16,11 @@ def myshop(request, keywords=None, page=1):
     start_index = items_per_page * int(page)
 
     # Check user requested keywords
+    raw_keywords = ''
     if request.GET.get('q'):
-        keywords = request.GET.get('q', '')
-        if isinstance(keywords, unicode):
-            keywords = keywords.encode("utf-8", "ignore")
+        raw_keywords = request.GET.get('q', '')
+        if isinstance(raw_keywords, unicode):
+            keywords = raw_keywords.encode("utf-8", "ignore")
             keywords = urllib.quote_plus(keywords)
     else:
         keywords = "pink+flower"
@@ -41,7 +42,8 @@ def myshop(request, keywords=None, page=1):
             p['product']['description'] = description
             """
     return render_to_response('home.html',
-                              {'products': products,
+                              {'keywords': raw_keywords,
+                               'products': products,
                                'pagination': pagination,
                                'currentPage': int(page)},
                               context_instance=RequestContext(request))
