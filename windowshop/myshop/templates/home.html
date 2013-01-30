@@ -18,11 +18,11 @@
   <ul class="thumbnails">
   {% for p in products %}
     <li class="span2">
-      <div class="thumbnail">
-        <a class="thumbnail" href="{{ p.product.link }}"><img src="{{ p.product.images.0.link }}" /></a>
+      <div class="">
+        <a class="thumbnail" href="{{ p.product.link }}"><img src="{{ p.product.images.0.link }}" title="{{ p.product.title }}" /></a>
         <div class="caption">
-          <div class="title">{{ p.product.title }}</div>
-          <div class="price">{{ p.product.inventories.0.price }}</div>
+          <div class="title" title="{{ p.product.title }}">{{ p.product.title }}</div>
+          <div class="price">${{ p.product.inventories.0.price }}</div>
           <div class="store">{{ p.product.author.name }}</div>
         </div><!--caption-->
       </div>

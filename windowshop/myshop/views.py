@@ -25,7 +25,7 @@ def myshop(request, keywords=None, page=1):
     else:
         keywords = "pink+flower"
 
-    api = base_api % ("JP", keywords, start_index, items_per_page)  # county code, query, start index, max results
+    api = base_api % ("US", keywords, start_index, items_per_page)  # county code, query, start index, max results
 
     r = requests.get(api)
     products = r.json.get('items')

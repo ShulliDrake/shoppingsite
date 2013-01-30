@@ -1,11 +1,13 @@
 ul { list-style:none; }
 .search { margin:15px 0; }
-.thumbnails li { height:200px; }
+.thumbnails { margin:0; border-left:1px solid #e5e5e5; }
+.thumbnails li { height:180px; width:150px; border-right:1px solid #e5e5e5; margin:0; padding:0 15px 15px; }
 li a.thumbnail { height:100px; padding:0; overflow:hidden; }
 
 .caption { text-shadow:1px 1px 1px #ddd; font-size:0.8em; }
 .caption .title { font-weight:bold; font-size:1.2em; }
 .caption .title, .caption .store { line-height:normal; text-overflow:ellipsis; white-space:nowrap; overflow:hidden; }
+.caption .price { font-weight:bold; }
 .caption .description { padding:0 10px; }
 .caption .store { }
 
