@@ -2,15 +2,15 @@
 
   <section class="browse">
     <div class="heading">Browse by Categories</div>
-    {% get_setting "PRODUCT_CATEGORIES" as categories %}
+    {% get_setting "BROWSE_ITEMS" as categories %}
 
     <ul class="nav nab-list">
-    {% for category in categories %}
-
+    {% for category, products in categories.items %}
       <li class=""><a href="?q={{ category }}">{{ category }}</a>
         <ul class="sublist">
-          <li><a href="#">item1</a></li>
-          <li><a href="#">item2</a></li>
+        {% for product in products %}
+          <li><a href="?q={{ product }}">{{ product }}</a></li>
+        {% endfor %}
         </ul>
       </li>
 

@@ -10,11 +10,11 @@ API_CROWD = "&crowdBy=accountId:1"
 API_ITEMS_PER_PAGE = 24
 
 # Browse Categories
-PRODUCT_CATEGORIES = [
-"Cosmetics",
-"T-Shirts",
-"Pet Supplies",
-"Food",
-"Tea",
-"Alcohol"
-]
+BROWSE_ITEMS = {
+    "Makeup": ["Foundation", "Lipstick", "Lip Gloss", "Eyeshadow", "Mascara"],
+    "Clothing": ["Activewear", "Jeans", "Skirts", "Sweaters", "T-Shirts", "Polos", "Coats", "PJs"],
+    "Shoes": ["Pumps", "Mary Janes", "Sandals", "Flip Flops", "Boots", "Sneakers"],
+    "Grocery": ["Chocolates", "Coffee", "Tea", "Juice", "Soda", "Pasta", "Soup"],
+    "Electronics": ["Android", "iPhone", "Computers", "Printers", "TV", "Camera"],
+    "Flowers": ["Bouquets", "Corsages", "Crystal Vases", "Mini Cactus", "Marimo Aquarium"]
+    }
