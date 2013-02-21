@@ -1,3 +1,6 @@
+* { padding:0; margin:0; }
+a { color:#020655; font-size:12px; }
+
 ul { list-style:none; }
 .search { margin:15px 0; }
 .thumbnails { margin:0; border-left:1px solid #e5e5e5; }
@@ -12,7 +15,8 @@ li a.thumbnail { height:100px; padding:0; overflow:hidden; }
 .caption .store { }
 
 .browse { clear:right; }
-.browse .heading { font-weight:bold; }
+.browse .heading { padding:5px 10px; font-weight:bold; width:230px; background-color:#83befc; color:#fff; text-shadow:2px 2px 2px #111; }
 .browse ul { width:120px;}
-.browse .sublist { display:none; }
+.browse .nav { position:relative; padding-left:10px; }
+.browse .sublist { display:none; position:absolute; top:-10px; left:60px; border:1px solid #7f7f7f; padding:10px; background-color:#fff; border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px; }
 .browse ul li a { border-bottom:1px solid #e5e5e5; padding:3px 0 0; }

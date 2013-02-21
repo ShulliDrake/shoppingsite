@@ -4,7 +4,7 @@
     <div class="heading">Browse by Categories</div>
     {% get_setting "BROWSE_ITEMS" as categories %}
 
-    <ul class="nav nab-list">
+    <ul class="nav">
     {% for category, products in categories.items %}
       <li class=""><a href="?q={{ category }}">{{ category }}</a>
         <ul class="sublist">
