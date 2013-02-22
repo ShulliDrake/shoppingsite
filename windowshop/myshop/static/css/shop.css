@@ -1,5 +1,6 @@
 * { padding:0; margin:0; }
 a { color:#020655; font-size:12px; }
+ul { margin:0; padding:0; }
 
 ul { list-style:none; }
 .search { margin:15px 0; }
@@ -20,3 +21,6 @@ li a.thumbnail { height:100px; padding:0; overflow:hidden; }
 .browse .nav { position:relative; padding-left:10px; }
 .browse .sublist { display:none; position:absolute; top:-10px; left:60px; border:1px solid #7f7f7f; padding:10px; background-color:#fff; border-radius:8px; -moz-border-radius:8px; -webkit-border-radius:8px; }
 .browse ul li a { border-bottom:1px solid #e5e5e5; padding:3px 0 0; }
+
+footer { width:940px; clear:left; margin:0 auto; margin-top:20px; padding:10px 0 30px; border-top:1px solid gray; }
+footer li { float:left; margin-left:20px; }
