@@ -28,9 +28,10 @@ def myshop(request, keywords=None, page=1):
     api = base_api % ("US", keywords, start_index, items_per_page)  # county code, query, start index, max results
 
     r = requests.get(api)
-    products = r.json.get('items')
-    total_items = r.json.get('totalItems')
-    items_per_page = r.json.get('itemsPerPage')
+
+    products = r.json().get('items')
+    total_items = r.json().get('totalItems')
+    items_per_page = r.json().get('itemsPerPage')
 
     pagination = _get_pagination(total_items, start_index, items_per_page)
 

@@ -152,3 +152,9 @@ LOGGING = {
         },
     }
 }
+
+# heroku settings
+import dj_database_url
+import os
+if os.getcwd() == "/app":
+    DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
