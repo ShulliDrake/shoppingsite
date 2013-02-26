@@ -6,10 +6,16 @@
 
     <ul class="nav">
     {% for category, products in categories.items %}
-      <li class=""><a href="?q={{ category }}">{{ category }}</a>
-        <ul class="sublist">
-        {% for product in products %}
-          <li><a href="?q={{ product }}">{{ product }}</a></li>
+      <li class="category"><a href="?q={{ category }}">{{ category }}</a>
+        <ul class="sublist hidden">
+        {% for sub_category, sub_items in products.items %}
+          <li class="sub_category"><a href="?q={{ sub_category }}">{{ sub_category }}</a>
+	    <ul class="items hidden">
+	      {% for product in sub_items %}
+	      <li><a href="?q={{ product }}">{{ product }}</a></li>
+	      {% endfor %}
+	    </ul>
+	  </li>
         {% endfor %}
         </ul>
       </li>

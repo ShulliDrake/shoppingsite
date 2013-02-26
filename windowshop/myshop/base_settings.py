@@ -11,10 +11,31 @@ API_ITEMS_PER_PAGE = 24
 
 # Browse Categories
 BROWSE_ITEMS = {
-    "Makeup": ["Foundation", "Lipstick", "Lip Gloss", "Eyeshadow", "Mascara"],
-    "Clothing": ["Activewear", "Jeans", "Skirts", "Sweaters", "T-Shirts", "Polos", "Coats", "PJs"],
-    "Shoes": ["Pumps", "Mary Janes", "Sandals", "Flip Flops", "Boots", "Sneakers"],
-    "Grocery": ["Chocolates", "Coffee", "Tea", "Juice", "Soda", "Pasta", "Soup"],
-    "Electronics": ["Android", "iPhone", "Computers", "Printers", "TV", "Camera"],
-    "Flowers": ["Bouquets", "Corsages", "Crystal Vases", "Mini Cactus", "Marimo Aquarium"]
+    "Beauty": {
+        "Makeup": ["Foundation", "Lipstick", "Lip Gloss", "Eyeshadow", "Mascara", "False Eyelashes"],
+        "Skincare": ["Eye cream", "Moisturizer", "Toner", "Sunscreen"]
+        },
+    "Apparel": {
+        "Dresses": ["Cocktail Dress", "Prom", "Bridesmaid", "Wedding Dress"],
+        "Activewear": ["Yoga Tops", "Yoga Pants", "Running Jacket", "Running Shorts", "Tennis Skirt"],
+        "Men": ["Suits", "Tie", "Tie Pin", "Dress Shirt"]
+        },
+    "Shoes": {
+        "Dress": ["Pumps", "Mary Janes", "Booties", "Loafers"],
+        "Casual": ["Flip Flops", "Sneakers", "Sandals", "Slippers", "Espadrilles"]
+        },
+    "Electronics": {
+        "Computers": ["iMac", "MacBook", "Chromebook", "Ultrabooks", "Microsoft Surface"],
+        "Phones": ["Android", "iPhone", "Phone Case", "Phone Charger"],
+        "Electronics": ["HDTV", "Digital Camera", "Home Theater", "Bluetooth Headset"]
+        },
+    "Games": {
+        "Consoles": ["Xbox 360", "PS3", "Wii", "WiiU", "PS Vista", "Nintendo 3DS"],
+        "Video Games": ["Xbox Games", "PS Games", "DS Games", "Super Mario"],
+        "Non-Video Games": ["Board Games", "Puzzle Games", "Word Games", "Chess"],
+        },
+    "Flowers": {
+        "Flowers": ["Tulips", "Roses", "Lilies", "Mini Cactus", "Marimo Aquarium", "Preserved Flowers"],
+        "Special Occasions": ["Red Roses", "Anniversary Bouquet", "Corsages"]
+        }
     }
