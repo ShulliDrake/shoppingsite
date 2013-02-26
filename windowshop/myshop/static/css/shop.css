@@ -42,6 +42,8 @@ li a.thumbnail { height:100px; padding:0; overflow:hidden; }
 .shown { display:block; }
 
 header { width:940px; height:20px; clear:both; margin:0 auto; padding:10px 0; border-bottom:1px solid gray; }
-footer { width:940px; clear:both; margin:20px auto 0; padding:10px 0 30px; border-top:1px solid gray; }
+footer { width:940px; clear:both; margin:20px auto; padding:20px 0 30px; border-top:1px solid gray; }
 
 footer li, header li { float:left; margin-left:20px; }
+
+#google_plus { float:right; }
