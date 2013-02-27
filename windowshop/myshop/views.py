@@ -61,4 +61,9 @@ def _get_pagination(totalItems, startIndex, itemsPerPage):
     # calculate the number of pages to show
     numOfPages = totalItems / itemsPerPage
 
-    return range(1, min(16, numOfPages))
+    pagination = range(1, min(7, numOfPages))
+    showNextPage = True
+    if numOfPages <= 7:
+        showNextPage = False
+
+    return {'pagination':pagination, 'next':showNextPage}

@@ -2,10 +2,6 @@
 {% block content %}
 {% if products %}
 
-  {% if pagination %}
-  {% include "pagination.html" %}
-  {% endif %}
-
   <div class="search">
     <form class="form-search" method="GET" action="/">
       <input type="text" name="q" value="{{ keywords }}" placeholder="What are you looking for?" />

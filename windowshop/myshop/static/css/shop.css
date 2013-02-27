@@ -15,7 +15,7 @@ body { background-color:#f1fbff; }
 .search .button { color:#fff; font-weight:bold; text-shadow:2px 2px 2px #111; background-color:#83BEFC; padding:5px 10px; border:none; text-transform:uppercase; }
 
 .thumbnails { margin:0; border-left:1px solid #e5e5e5; }
-.thumbnails li { height:180px; width:150px; border-right:1px solid #e5e5e5; margin:0; padding:0 15px 15px; }
+.thumbnails li { height:180px; width:150px; border-right:1px solid #e5e5e5; margin:0; padding:0 15px; }
 li a.thumbnail { height:100px; padding:0; overflow:hidden; }
 
 .caption { text-shadow:1px 1px 1px #ddd; font-size:0.8em; }
@@ -24,6 +24,15 @@ li a.thumbnail { height:100px; padding:0; overflow:hidden; }
 .caption .price { font-weight:bold; }
 .caption .description { padding:0 10px; }
 .caption .store { }
+
+.paginatio { float:right; margin-right:15px; }
+.paginatio ul { float:right; }
+.paginatio div { float:left; font-weight:bold; font-size:12px; margin-right:10px; }
+.paginatio li { float:left; width:20px; position:relative; }
+.paginatio .current a { color:#83befc; cursor:default; pointer-events:none; }
+.paginatio li a { display:block; }
+.paginatio li a.next { position:absolute; top:4px; border-left:solid 8px #333; border-top:solid 6px transparent; border-bottom:solid 6px transparent; }
+.paginatio li a:hover { color:#c3c3c3; border-left-color:#c3c3c3; }
 
 .browse { clear:right; }
 .browse .heading { padding:5px 10px; margin-bottom:10px; font-weight:bold; width:230px; background-color:#83befc; color:#fff; text-shadow:2px 2px 2px #111; }

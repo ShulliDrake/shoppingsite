@@ -8,7 +8,7 @@ API_PATH = "https://www.googleapis.com/shopping/search/v1/public/products?key=AI
 
 API_CROWD = "&crowdBy=accountId:1"
 
-API_ITEMS_PER_PAGE = 24
+API_ITEMS_PER_PAGE = 30
 
 # Browse Categories
 BROWSE_ITEMS = OrderedDict([
