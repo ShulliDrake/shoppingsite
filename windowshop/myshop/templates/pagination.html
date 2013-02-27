@@ -1,10 +1,10 @@
 <div class="paginatio">
   <ul>
     {% for page in pagination.pagination %}
-    <li{% ifequal forloop.counter currentPage %} class="current"{% endifequal %}><a href="/{{ page }}">{{ page }}</a></li>
+    <li{% ifequal forloop.counter currentPage %} class="current"{% endifequal %}><a href="?q={{ keywords }}&page={{ page }}">{{ page }}</a></li>
     {% endfor %}
     {% if pagination.next %}
-    <li><a href="" class="next"></a></li>
+    <li><a href="?q={{ keywords }}&page={{ pagination.next }}" class="next"></a></li>
     {% endif %}
   </ul>
   <div>Page{{ pagination.pagination|pluralize}}</div>

@@ -7,13 +7,12 @@ import requests
 import urllib
 
 
-def myshop(request, keywords=None, page=1):
+def myshop(request, keywords=None):
 
     # Get configuration values
     api_key = settings.API_KEY
     base_api = settings.API_PATH
     items_per_page = settings.API_ITEMS_PER_PAGE
-    start_index = items_per_page * int(page)
 
     # Check user requested keywords
     raw_keywords = ''
@@ -25,6 +24,18 @@ def myshop(request, keywords=None, page=1):
     else:
         keywords = "pink+flower"
 
+    # Get page number
+    page = 1
+    if request.GET.get('page'):
+        page = request.GET.get('page')
+
+    try:
+        start_index = items_per_page * int(page)
+
+    except ValueError:
+        page = 1
+        start_index = items_per_page
+
     api = base_api % ("US", keywords, start_index, items_per_page)  # county code, query, start index, max results
 
     r = requests.get(api)
@@ -33,7 +44,7 @@ def myshop(request, keywords=None, page=1):
     total_items = r.json().get('totalItems')
     items_per_page = r.json().get('itemsPerPage')
 
-    pagination = _get_pagination(total_items, start_index, items_per_page)
+    pagination = _get_pagination(total_items, start_index, items_per_page, page)
 
     """
     if products:
@@ -51,7 +62,7 @@ def myshop(request, keywords=None, page=1):
 
 
 # Helper functions
-def _get_pagination(totalItems, startIndex, itemsPerPage):
+def _get_pagination(totalItems, startIndex, itemsPerPage, currentPage):
     """
     """
 
@@ -62,8 +73,8 @@ def _get_pagination(totalItems, startIndex, itemsPerPage):
     numOfPages = totalItems / itemsPerPage
 
     pagination = range(1, min(7, numOfPages))
-    showNextPage = True
-    if numOfPages <= 7:
-        showNextPage = False
+    nextPage = None
+    if numOfPages > 7:
+        nextPage = int(currentPage) + 1
 
-    return {'pagination':pagination, 'next':showNextPage}
+    return {'pagination':pagination, 'next':nextPage}
