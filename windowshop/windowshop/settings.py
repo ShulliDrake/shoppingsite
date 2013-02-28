@@ -1,6 +1,8 @@
 # Django settings for windowshop project.
 from myshop.base_settings import *
+import os
 
+PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.path.pardir))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -121,6 +123,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    'django_assets',
     'myshop'
 )
 
@@ -153,8 +156,11 @@ LOGGING = {
     }
 }
 
+# django-assets
+ASSETS_ROOT = os.path.join(PROJECT_ROOT, 'myshop/static')
+ASSET_URL = 'static'
+
 # heroku settings
 import dj_database_url
-import os
 if os.getcwd() == "/app":
     DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
