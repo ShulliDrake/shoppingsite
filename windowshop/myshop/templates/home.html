@@ -5,32 +5,34 @@
   <div class="search">
     <form class="form-search" method="GET" action="/">
       <input type="text" name="q" value="{{ keywords }}" placeholder="What are you looking for?" />
-      <button class="button" type="submit">Search!</button>
+      <input class="button" type="image" src="{{ STATIC_URL }}img/search.png" width="26" height="26" />
     </form>
   </div>
 
   <div class="clearfix"></div>
 
-  <ul class="thumbnails">
-  {% for p in products %}
-    <li class="span2">
-      <div class="">
-        <a class="thumbnail" href="{{ p.product.link }}"><img src="{{ p.product.images.0.link }}" title="{{ p.product.title }}" /></a>
-        <div class="caption">
-          <div class="title" title="{{ p.product.title }}">{{ p.product.title }}</div>
-          <div class="price">${{ p.product.inventories.0.price }}</div>
-          <div class="store">{{ p.product.author.name }}</div>
-        </div><!--caption-->
-      </div>
-    </li>
-  {% endfor %}
-  </ul>
+  {% include "browse.html" %}
+
+  <section class="results">
+    <ul class="thumbnails">
+      {% for p in products %}
+      <li class="span2">
+	<div class="">
+          <a class="thumbnail" href="{{ p.product.link }}"><img src="{{ p.product.images.0.link }}" title="{{ p.product.title }}" /></a>
+          <div class="caption">
+            <div class="title" title="{{ p.product.title }}">{{ p.product.title }}</div>
+            <div class="price">${{ p.product.inventories.0.price }}</div>
+            <div class="store">{{ p.product.author.name }}</div>
+          </div><!--caption-->
+	</div>
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
 
   {% if pagination %}
   {% include "pagination.html" %}
   {% endif %}
-
-  {% include "browse.html" %}
 
 {% else %}
   <div>No items found.</div>
