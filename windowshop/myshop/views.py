@@ -22,7 +22,7 @@ def myshop(request, keywords=None):
             keywords = raw_keywords.encode("utf-8", "ignore")
             keywords = urllib.quote_plus(keywords)
     else:
-        keywords = "pink+flower"
+        keywords = settings.DEFAULT_KEYWORDS
 
     # Get page number
     page = 1

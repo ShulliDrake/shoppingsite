@@ -10,6 +10,8 @@ API_CROWD = "&crowdBy=accountId:1"
 
 API_ITEMS_PER_PAGE = 30
 
+DEFAULT_KEYWORDS = "Kitten+Calendars"
+
 # Browse Categories
 BROWSE_ITEMS = OrderedDict([
         ("Electronics", {
