@@ -165,3 +165,4 @@ ASSETS_DEBUG = True
 import dj_database_url
 if os.getcwd() == "/app":
     DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
+    ASSETS_DEBUG = False
