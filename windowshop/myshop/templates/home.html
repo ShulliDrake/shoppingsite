@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% load get_simple_setting %}
+
 {% block content %}
 {% if products %}
 
@@ -11,7 +13,10 @@
 
   <div class="clearfix"></div>
 
+  <section class="left_column">
+  {% include "filters.html" %}
   {% include "browse.html" %}
+  </section>
 
   <section class="results">
     <ul class="thumbnails">
@@ -37,4 +42,10 @@
 {% else %}
   <div>No items found.</div>
 {% endif %}
+{% endblock %}
+
+{% block js_support %}
+  <script type="text/javascript">
+    var slider_config = {"max":{% get_simple_setting "PRICE_RANGE_MAX" %}, min:{% get_simple_setting "PRICE_RANGE_MIN" %}}
+  </script>
 {% endblock %}

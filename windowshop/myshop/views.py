@@ -15,6 +15,7 @@ def _get_api_response(request):
     api_key = settings.API_KEY
     base_api = settings.API_PATH
     items_per_page = settings.API_ITEMS_PER_PAGE
+    restrict_by = settings.API_RESTRICT
 
     # Check user requested keywords
     raw_keywords = ''
@@ -25,6 +26,11 @@ def _get_api_response(request):
             keywords = urllib.quote_plus(keywords)
     else:
         keywords = settings.DEFAULT_KEYWORDS
+
+    # Price range
+    price_min = request.GET.get('min', settings.PRICE_RANGE_MIN)
+    price_max = request.GET.get('max', settings.PRICE_RANGE_MAX)
+    price_range = restrict_by % (price_min, price_max)
 
     # Get page number
     page = 1
@@ -39,6 +45,7 @@ def _get_api_response(request):
         start_index = items_per_page
 
     api = base_api % ("US", keywords, start_index, items_per_page)  # county code, query, start index, max results
+    api = api + price_range
 
     r = requests.get(api)
 

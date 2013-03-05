@@ -1,0 +1,9 @@
+{% load get_simple_setting %}
+<section class="filters">
+  <div class="slider"><span>Price: </span>
+    <div class="s_label">$<span id="price_min">{% get_simple_setting "PRICE_RANGE_MIN" %}</span></div>
+    <span> - </span>
+    <div class="s_label">$<span id="price_max">{% get_simple_setting "PRICE_RANGE_MAX" %}</span></div>
+    <div id="slider"></div>
+  </div>
+</section>
