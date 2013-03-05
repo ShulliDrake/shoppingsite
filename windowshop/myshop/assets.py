@@ -2,7 +2,7 @@ from django_assets import Bundle, register
 
 sass = Bundle('css/shop.scss',
               filters='scss',
-              output='sass.css')
+              output='shop.css')
 
 all_css = Bundle(
                  sass,
