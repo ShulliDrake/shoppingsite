@@ -2,13 +2,15 @@
 from django.conf import settings
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.http import HttpResponse
 
+import simplejson
 import requests
 import urllib
 
 
-def myshop(request, keywords=None):
-
+def _get_api_response(request):
+    """Call Shopping API"""
     # Get configuration values
     api_key = settings.API_KEY
     base_api = settings.API_PATH
@@ -53,11 +55,32 @@ def myshop(request, keywords=None):
             description = description[:200] + '...'  if len(description) > 200 else description
             p['product']['description'] = description
             """
+
+    search_results = {
+        'products': products,
+        'pagination': pagination,
+        'keywords': raw_keywords,
+        'page': page
+        }
+
+    return search_results
+
+
+def api(request):
+    """Return json application"""
+    response = _get_api_response(request)
+    return HttpResponse(simplejson.dumps(response), mimetype="application/json")
+
+
+def myshop(request):
+
+    search_results = _get_api_response(request)
+
     return render_to_response('home.html',
-                              {'keywords': raw_keywords,
-                               'products': products,
-                               'pagination': pagination,
-                               'currentPage': int(page)},
+                              {'keywords': search_results.get('keywords'),
+                               'products': search_results.get('products'),
+                               'pagination': search_results.get('pagination'),
+                               'currentPage': int(search_results.get('page'))},
                               context_instance=RequestContext(request))
 
 

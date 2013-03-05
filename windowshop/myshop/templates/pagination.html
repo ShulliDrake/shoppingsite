@@ -1,10 +1,10 @@
-<div class="paginatio">
+<div class="paginator">
   <ul>
     {% for page in pagination.pagination %}
-    <li{% ifequal forloop.counter currentPage %} class="current"{% endifequal %}><a href="?q={{ keywords }}&page={{ page }}">{{ page }}</a></li>
+    <li class="link page{% ifequal forloop.counter currentPage %} current{% endifequal %}"><a data-keywords="{{ keywords }}" data-page="{{ page }}">{{ page }}</a></li>
     {% endfor %}
     {% if pagination.next %}
-    <li><a href="?q={{ keywords }}&page={{ pagination.next }}" class="next"></a></li>
+    <li><a data-keywords="{{ keywords }}" data-page="{{ pagination.next }}" class="next"></a></li>
     {% endif %}
   </ul>
   <div>Page{{ pagination.pagination|pluralize}}</div>

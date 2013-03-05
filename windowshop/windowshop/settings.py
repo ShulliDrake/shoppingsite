@@ -158,7 +158,8 @@ LOGGING = {
 
 # django-assets
 ASSETS_ROOT = os.path.join(PROJECT_ROOT, 'myshop/static')
-ASSET_URL = 'static'
+
+ASSETS_DEBUG = True
 
 # heroku settings
 import dj_database_url

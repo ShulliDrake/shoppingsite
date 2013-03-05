@@ -3,6 +3,7 @@ webassets>=0.8
 django-assets==0.8
 cssmin==0.1.4
 jsmin==2.0.2
+simplejson>=3.1.0
 distribute==0.6.31
 wsgiref==0.1.2
 requests==1.1.0
