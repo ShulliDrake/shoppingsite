@@ -15,7 +15,7 @@ def _get_api_response(request):
     api_key = settings.API_KEY
     base_api = settings.API_PATH
     items_per_page = settings.API_ITEMS_PER_PAGE
-    restrict_by = settings.API_RESTRICT
+    restrict_by = settings.API_RESTRICT_PARAM
 
     # Check user requested keywords
     raw_keywords = ''
@@ -30,7 +30,16 @@ def _get_api_response(request):
     # Price range
     price_min = request.GET.get('min', settings.PRICE_RANGE_MIN)
     price_max = request.GET.get('max', settings.PRICE_RANGE_MAX)
-    price_range = restrict_by % (price_min, price_max)
+    price_range = settings.API_RESTRICT_PRICE % (price_min, price_max)
+
+    restriction = restrict_by + "," + price_range
+    brand = request.GET.get('brand')
+    if brand:
+        if isinstance(raw_keywords, unicode):
+            brand = brand.encode("utf-8", "ignore")
+            brand = urllib.quote_plus(brand)
+        brand_restrict = settings.API_RESTRICT_BRAND % brand
+        restriction = restriction + "," + (settings.API_RESTRICT_BRAND % brand)
 
     # Get page number
     page = 1
@@ -45,7 +54,7 @@ def _get_api_response(request):
         start_index = items_per_page
 
     api = base_api % ("US", keywords, start_index, items_per_page)  # county code, query, start index, max results
-    api = api + price_range
+    api = api + restriction
 
     r = requests.get(api)
 
@@ -55,6 +64,11 @@ def _get_api_response(request):
 
     pagination = _get_pagination(total_items, start_index, items_per_page, page)
 
+    available_brands = None
+    if products:
+        available_brands = [p.get('product').get('brand') for p in products]
+        available_brands = filter(None, sorted(list(set(available_brands))))
+            
     """
     if products:
         for p in products:
@@ -67,7 +81,8 @@ def _get_api_response(request):
         'products': products,
         'pagination': pagination,
         'keywords': raw_keywords,
-        'page': page
+        'page': page,
+        'brands': available_brands
         }
 
     return search_results
@@ -86,8 +101,10 @@ def myshop(request):
     return render_to_response('home.html',
                               {'keywords': search_results.get('keywords'),
                                'products': search_results.get('products'),
+                               'brands': search_results.get('brands'),
                                'pagination': search_results.get('pagination'),
                                'currentPage': int(search_results.get('page'))},
+                              
                               context_instance=RequestContext(request))
 
 

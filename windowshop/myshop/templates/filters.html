@@ -6,4 +6,14 @@
     <div class="s_label">$<span id="price_max">{% get_simple_setting "PRICE_RANGE_MAX" %}</span></div>
     <div id="slider"></div>
   </div>
+
+  <div class="brands"><div class="heading">Brands<span class="arrow_d"></span></div>
+    <ul class="selected hidden">
+    </ul>
+    <ul class="selection hidden">
+      {% for brand in brands %}
+      <li class="link"><a class="bname" data-brand="{{ brand }}">{{ brand }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
 </section>

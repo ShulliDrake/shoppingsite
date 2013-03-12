@@ -46,6 +46,7 @@
 
 {% block js_support %}
   <script type="text/javascript">
-    var slider_config = {"max":{% get_simple_setting "PRICE_RANGE_MAX" %}, min:{% get_simple_setting "PRICE_RANGE_MIN" %}}
+    var slider_config = {"max":{% get_simple_setting "PRICE_RANGE_MAX" %}, min:{% get_simple_setting "PRICE_RANGE_MIN" %}};
+    var ms_keywords = "{{ keywords }}";
   </script>
 {% endblock %}

@@ -6,10 +6,12 @@ API_KEY = "AIzaSyA4tqHma0vcR-VC7iPyo3il69-gF4urh7s"
 
 API_PATH = "https://www.googleapis.com/shopping/search/v1/public/products?key=AIzaSyA4tqHma0vcR-VC7iPyo3il69-gF4urh7s&country=%s&q=%s&startIndex=%s&maxResults=%s&alt=json"
 
-API_RESTRICT = "&restrictBy=price=[%s,%s]"
+API_RESTRICT_PARAM = "&restrictBy=condition=new"
+API_RESTRICT_PRICE = "price=[%s,%s]"
+API_RESTRICT_BRAND = "brand=%s"
 API_CROWD = "&crowdBy=accountId:1"
 
-API_ITEMS_PER_PAGE = 30
+API_ITEMS_PER_PAGE = 35
 
 DEFAULT_KEYWORDS = "Kitten+Calendars"
 
