@@ -45,12 +45,60 @@ li a.thumbnail { height:100px; padding:0; overflow:hidden; }
 
 /*** filters ***/
 .filters {
-
+  font-size:0.8em;
+  .heading {
+    position:relative;
+  }
 }
+.arrow_d {
+  position:absolute;
+  top:6px;
+  border-top:7px solid #777;
+  border-left:5px solid transparent;
+  border-right:5px solid transparent;
+}
+.brands {
+  ul {
+    width:110px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow:1px 1px 3px $blue-shadow;
+    .bname {
+      padding:3px 7px 0px;
+    }
+  }
+  ul.selected {
+    border-radius:2px 2px 0 0;
+    border-bottom:none;
+    position:relative;
+    li {
+      border-bottom:1px solid #ddd;
+    }
+    li:last-child {
+      border-bottom:none;
+    }
 
+    .remove {
+      position:absolute;
+      right:5px;
+      padding-left:5px;
+      border-left:1px solid #ddd;
+    }
+  }
+  ul.selection {
+    position: absolute;
+    max-height: 170px;
+    overflow-y: scroll;
+    border-radius:0 0 2px 2px;
+    box-shadow:inset 0 2px 2px 0px #bbb;
+    z-index:10;
+    a {
+      font-size:1em;
+    }
+  }
+}
 .slider {
   margin-bottom:20px;
-  font-size:0.8em;
   .s_label {
     font-weight:bold;
     display:inline-block;
@@ -82,7 +130,7 @@ li a.thumbnail { height:100px; padding:0; overflow:hidden; }
   }
 }
 /*** browse links ***/
-.browse { width:102px; padding-top:10px; }
+.browse { width:102px; padding-top:20px; }
 .browse .heading { font-size:13px; padding:5px 10px; margin-bottom:10px; font-weight:bold; background-color:$main-light-blue; color:#fff; text-shadow:2px 2px 2px #111; -webkit-box-shadow:3px 3px 2px $blue-shadow; }
 .browse .nav { width:100px; background-color:#fff; border:solid 1px #c7c7c7; -webkit-box-shadow:3px 3px 2px $blue-shadow; }
 .browse a:hover { font-weight:bold; color:#000; }
@@ -123,9 +171,9 @@ li a.thumbnail { height:100px; padding:0; overflow:hidden; }
   ul { float:right; }
   li {
     float:left; width:20px; position:relative;
-    li a { display:block; }
-    li a.next { position:absolute; top:4px; border-left:solid 8px #333; border-top:solid 6px transparent; border-bottom:solid 6px transparent; }
-    li a:hover { color:#c3c3c3; border-left-color:#c3c3c3; }
+    a { display:block; }
+    a.next { position:absolute; top:4px; border-left:solid 8px #333; border-top:solid 6px transparent; border-bottom:solid 6px transparent; }
+    a:hover { color:#c3c3c3; border-left-color:#c3c3c3; }
   }
   .current a { color:$main-light-blue; cursor:default; pointer-events:none; }
 }
