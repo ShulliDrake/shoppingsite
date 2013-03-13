@@ -201,8 +201,16 @@ MS.views.brandFilterView = Backbone.View.extend({
 });
 
 MS.views.browseView = Backbone.View.extend({
-//browse view
+    events: {
+	'click a': 'quickSearch'
+    },
 
+    quickSearch: function(e){
+	var keywords = $(e.target).data('keywords');
+	if(keywords){
+	    this.model.setKeywords(keywords);
+	}
+    }
 });
 
 MS.views.paginationView = Backbone.View.extend({
@@ -243,7 +251,6 @@ MS.shop = function() {
 		$("ul.selection", this).toggle();
 	    });
 
-//	    $("#nekoshop").click(MS.dispatcher);
 	}
 
     };
