@@ -17,6 +17,7 @@ $(function(e){
 	el: "#container",
 	model: new MS.models.contentModel
     });
+
 });
 
 MS.models.contentModel = Backbone.Model.extend({
@@ -65,6 +66,10 @@ MS.models.contentModel = Backbone.Model.extend({
     setBrand: function(brand){
 	this.updateQuery('brand', brand);
 	this.updateResults();
+    },
+
+    resetBrand: function(){
+	this.updateQuery('brand', null);
     },
 
     setPriceRange: function(min, max) {
@@ -117,6 +122,10 @@ MS.views.searchFormView = Backbone.View.extend({
 
     submit: function(e){
 	e.preventDefault();
+
+	// need to reset brand, but keep price range
+	this.model.resetBrand();
+
 	var keywords = this.$('.form-search input[name=q]').val();
 	this.model.setKeywords(keywords);
     }
@@ -172,8 +181,11 @@ MS.views.brandFilterView = Backbone.View.extend({
 	}
 
 	var selected_brand = this.model.get('querySet').brand;
+
 	if (selected_brand) {
 	    this.$(".selected").append(selected_brand_html(selected_brand)).show();
+	} else {
+	    this.$(".selected").html('').hide();
 	}
 	var brand_list = this.model.get('availableBrands');
 	var html = '';
