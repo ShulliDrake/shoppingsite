@@ -12,7 +12,6 @@ MS.models = {};
 $(function(e){
 
     MS.shop.bind(e);
-    MS.search.bind(e);
 
     var mainView = new MS.views.contentView({
 	el: "#container",
@@ -57,6 +56,8 @@ MS.models.contentModel = Backbone.Model.extend({
     },
 
     setKeywords: function(keywords){
+	//TODO
+	this.updateQuery('page', '1');
 	this.updateQuery('q', keywords);
 	this.updateResults();
     },
@@ -69,6 +70,11 @@ MS.models.contentModel = Backbone.Model.extend({
     setPriceRange: function(min, max) {
 	this.updateQuery('min', min);
 	this.updateQuery('max', max);
+	this.updateResults();
+    },
+
+    setPageNum: function(pageNum){
+	this.updateQuery('page', pageNum);
 	this.updateResults();
     }
 
@@ -95,6 +101,10 @@ MS.views.contentView = Backbone.View.extend({
 	});
 	var browseView = new MS.views.browseView({
 	    el: ".browse",
+	    model: this.model
+	});
+	var paginationView = new MS.views.paginationView({
+	    el: ".paginator",
 	    model: this.model
 	});
     }
@@ -138,8 +148,6 @@ MS.views.itemsView = Backbone.View.extend({
 	});
 	$('.thumbnails').replaceWith('<div class="thumbnails">' + html + "</div>");
 
-	//TODO
-//	$('.page a').data("keywords", MS.shop.keywords)
     }
 });
 
@@ -197,6 +205,26 @@ MS.views.browseView = Backbone.View.extend({
 
 });
 
+MS.views.paginationView = Backbone.View.extend({
+    events: {
+	'click .page a': 'paginate'
+    },
+    initialize: function(){
+
+	this.model.bind('change:items', this.render, this);
+    },
+
+    render: function(){
+	//TODO - render pagination when search results get updated
+	$('.page a').data("keywords", MS.shop.keywords)
+    },
+
+    paginate: function(e){
+	var page = $(e.target).data('page');
+	this.model.setPageNum(page);
+    }
+});
+
 MS.shop = function() {
     return {
 	keywords: null,
@@ -220,34 +248,6 @@ MS.shop = function() {
 
     };
 }();
-
-/*
-MS.dispatcher = function(e){
-
-    //TODO
-    if (e && e.target) {
-
-	if (e.target.className === 'link') {
-	    e.target = e.target.childNode;
-	}
-	var keywords = $(e.target).data("keywords");
-	var page = $(e.target).data("page");
-	var brand = $(e.target).data("brand");
-
-	if (keywords) {
-	    MS.shop.keywords = keywords;
-	} else if (brand) {
-	    MS.shop.brand = brand;
-	    MS.filter.select_brand(brand);
-	}
-
-	if (keywords || page || brand) {
-	    MS.search.api(page);
-	}
-    }
-
-};
-*/
 
 MS.search = function() {
     var thumbnail_html = function(p) {
