@@ -56,6 +56,11 @@ MS.models.contentModel = Backbone.Model.extend({
 
     },
 
+    setKeywords: function(keywords){
+	this.updateQuery('q', keywords);
+	this.updateResults();
+    },
+
     setBrand: function(brand){
 	this.updateQuery('brand', brand);
 	this.updateResults();
@@ -72,6 +77,10 @@ MS.models.contentModel = Backbone.Model.extend({
 //main content view
 MS.views.contentView = Backbone.View.extend({
     initialize: function(){
+	var searchFormView = new MS.views.searchFormView({
+	    el: ".search",
+	    model: this.model
+	});
 	var filterView = new MS.views.brandFilterView({
 	    el: ".brands",
 	    model: this.model
@@ -88,6 +97,18 @@ MS.views.contentView = Backbone.View.extend({
 	    el: ".browse",
 	    model: this.model
 	});
+    }
+});
+
+MS.views.searchFormView = Backbone.View.extend({
+    events: {
+	'submit .form-search': 'submit'
+    },
+
+    submit: function(e){
+	e.preventDefault();
+	var keywords = this.$('.form-search input[name=q]').val();
+	this.model.setKeywords(keywords);
     }
 });
 
@@ -242,10 +263,6 @@ MS.search = function() {
 
     return {
 
-	bind: function(e) {
-	    MS.shop.keywords = $('.form-search input[name=q]').val();
-	    $('.form-search').bind('submit',MS.search.submit);
-	},
 
 	api: function(page) {
 /*
@@ -270,13 +287,6 @@ MS.search = function() {
 		}
 	    });
 */
-	},
-	submit: function(e) {
-	    e.preventDefault();
-
-	    var keywords = $('.form-search input[name=q]').val();
-	    MS.shop.keywords = keywords;
-	    MS.search.api();
 	}
     }
 }();
