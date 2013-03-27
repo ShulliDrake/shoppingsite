@@ -34,6 +34,7 @@ MS.models.contentModel = Backbone.Model.extend({
 	availableBrands: null,
 	pagination: null
     },
+
     updateQuery: function(key, value) {
 	var currentSet = this.get('querySet');
 	currentSet[key] = value;
@@ -122,6 +123,14 @@ MS.views.contentView = Backbone.View.extend({
 MS.views.searchFormView = Backbone.View.extend({
     events: {
 	'submit .form-search': 'submit'
+    },
+
+    initialize: function() {
+	this.model.bind('change:items', this.updateInputText, this);
+    },
+
+    updateInputText: function() {
+	this.$('.form-search input[name=q]').val(this.model.get('querySet').q);
     },
 
     submit: function(e){
