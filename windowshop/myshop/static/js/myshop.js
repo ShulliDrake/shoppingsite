@@ -14,7 +14,7 @@ $(function(e){
     MS.shop.bind(e);
 
     var mainView = new MS.views.contentView({
-	el: "#container",
+	el: $("#container"),
 	model: new MS.models.contentModel
     });
 
@@ -89,27 +89,27 @@ MS.models.contentModel = Backbone.Model.extend({
 MS.views.contentView = Backbone.View.extend({
     initialize: function(){
 	var searchFormView = new MS.views.searchFormView({
-	    el: ".search",
+	    el: $(".search"),
 	    model: this.model
 	});
 	var filterView = new MS.views.brandFilterView({
-	    el: ".brands",
+	    el: $(".brands"),
 	    model: this.model
 	});
 	var itemsView = new MS.views.itemsView({
-	    el: ".results",
+	    el: $(".results"),
 	    model: this.model
 	});
 	var sliderView = new MS.views.sliderView({
-	    el: ".slider",
+	    el: $(".slider"),
 	    model: this.model
 	});
 	var browseView = new MS.views.browseView({
-	    el: ".browse",
+	    el: $(".browse"),
 	    model: this.model
 	});
 	var paginationView = new MS.views.paginationView({
-	    el: ".paginator",
+	    el: $(".paginator"),
 	    model: this.model
 	});
     }
@@ -215,6 +215,29 @@ MS.views.brandFilterView = Backbone.View.extend({
 MS.views.browseView = Backbone.View.extend({
     events: {
 	'click a': 'quickSearch'
+    },
+
+    initialize: function(){
+	$(window).scroll(this.fixedAboveFooter);
+    },
+
+    fixedAboveFooter: function(){
+
+	var docHeight = $(document).height();
+	var browseHeight = $('.browse').height();
+	var offset = $('.browse').offset();
+
+	if ((docHeight - browseHeight - offset.top) < 60) {
+	    //stop fixed position
+	    $('.browse').removeClass('fixed_bottom');
+
+	} else {
+	    if ($(window).height() - browseHeight - (offset.top - $(window).scrollTop()) < 10) {
+		//back to fixed position
+		$('.browse').addClass('fixed_bottom');
+	    }
+	}
+
     },
 
     quickSearch: function(e){
