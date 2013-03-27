@@ -31,7 +31,8 @@ MS.models.contentModel = Backbone.Model.extend({
 	    'page': 1
 	},
 	items: null,
-	availableBrands: null
+	availableBrands: null,
+	pagination: null
     },
     updateQuery: function(key, value) {
 	var currentSet = this.get('querySet');
@@ -50,7 +51,10 @@ MS.models.contentModel = Backbone.Model.extend({
 
 		self.set('availableBrands', data.brands);
 		self.set('items', data.products);
+		self.set('pagination', data.pagination);
 
+	    } else {
+		self.trigger("NoResultsReturned");
 	    }
 	});
 
@@ -134,10 +138,10 @@ MS.views.searchFormView = Backbone.View.extend({
 MS.views.itemsView = Backbone.View.extend({
     initialize: function() {
 	this.model.bind('change:items', this.render, this);
+	this.model.bind('NoResultsReturned', this.showErrorMessage, this);
     },
 
     render: function(){
-
 	//needs to move to underscore
 	var thumbnail_html = function(p) {
 	    return "<li><div>" +
@@ -157,7 +161,12 @@ MS.views.itemsView = Backbone.View.extend({
 	});
 	$('.thumbnails').replaceWith('<div class="thumbnails">' + html + "</div>");
 
+    },
+
+    showErrorMessage: function() {
+	alert('No items were found. Please try different keywords.');
     }
+
 });
 
 MS.views.brandFilterView = Backbone.View.extend({
@@ -252,12 +261,28 @@ MS.views.paginationView = Backbone.View.extend({
     events: {
 	'click .page a': 'paginate'
     },
+
     initialize: function(){
 
-	this.model.bind('change:items', this.render, this);
+	this.model.bind('change:pagination', this.render, this);
     },
 
     render: function(){
+	var currentPage = this.model.get('querySet').page;
+	var paginationObj = this.model.get('pagination');
+
+	//TODO - move to underscore
+	var paginationHtml = '<ul>'
+	$.each(paginationObj.pagination, function(page, item){
+	    paginationHtml += '<li class="link page'+ (currentPage==item ? ' current' : '' )+'"><a data-page="' + item + '">' + item + '</a></li>';
+	});
+
+
+	if (paginationObj.next) {
+	    paginationHtml += '<li><a data-page="' + paginationObj.next + '" class="next"></a></li>';
+	}
+	paginationHtml += '</ul>'
+	this.$el.html(paginationHtml);
 	//TODO - render pagination when search results get updated
 	$('.page a').data("keywords", MS.shop.keywords)
     },
@@ -360,6 +385,7 @@ MS.views.sliderView = Backbone.View.extend({
     },
 
     setPrice: function(e, ui) {
+	this.model.updateQuery('page', '1'); //TODO
 	var min = ui.values[0];
 	var max = ui.values[1];
 	this.model.setPriceRange(min, max);
