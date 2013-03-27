@@ -225,5 +225,14 @@ header { max-width:1200px; min-width:940px; height:20px; clear:both; margin:0 au
 footer { max-width:1200px; min-width:940px; clear:both; margin:20px auto; padding:20px 0 30px; border-top:1px solid gray; }
 
 footer li, header li { float:left; margin-left:20px; }
+footer .other_project {
+  font-size:12px;
+  li {
+    padding-left:10px;
+  }
+  li:first-child {
+    border-left:1px solid gray;
+  }
+}
 
 #google_plus { float:right; }

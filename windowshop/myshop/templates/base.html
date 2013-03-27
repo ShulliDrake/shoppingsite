@@ -24,17 +24,9 @@
   {% endblock %}
   </div>
 
-
-  <footer>
-    <div id="google_plus">
-    {% include "google_plus.html" %}
-    </div>
-    <ul>
-      <li>&copy; {% now "Y" %} <a href="/">YawnNeko.com</a></li>
-      <li><a href="http://github.com/ShulliDrake/shopping_app">GitHub</a></li>
-      <li><a href="mailto:nozomi@yawnneko.com">Contact</a></li>
-    </ul>
-  </footer>
+  {% block footer %}
+    {% include "footer.html" %}
+  {% endblock %}
 
   {% block js_support %}
   {% endblock %}
