@@ -13,7 +13,7 @@ API_CROWD = "&crowdBy=accountId:1"
 
 API_ITEMS_PER_PAGE = 35
 
-DEFAULT_KEYWORDS = "Kitten+Calendars"
+DEFAULT_KEYWORDS_LIST = ["Kitten Calendars", "Flowers", "Orange Coat", "Pink Dress", "Lululemon Hoodie", "Elmo", "North Face", "Nike", "Cute Thermos"]
 
 PRICE_RANGE_MIN = 15
 PRICE_RANGE_MAX = 250

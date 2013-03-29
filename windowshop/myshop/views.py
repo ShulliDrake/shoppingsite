@@ -7,6 +7,7 @@ from django.http import HttpResponse
 import simplejson
 import requests
 import urllib
+import random
 
 
 def _get_api_response(request):
@@ -21,11 +22,14 @@ def _get_api_response(request):
     raw_keywords = ''
     if request.GET.get('q'):
         raw_keywords = request.GET.get('q', '')
-        if isinstance(raw_keywords, unicode):
-            keywords = raw_keywords.encode("utf-8", "ignore")
-            keywords = urllib.quote_plus(keywords)
     else:
-        keywords = settings.DEFAULT_KEYWORDS
+        keywords_list = settings.DEFAULT_KEYWORDS_LIST
+        raw_keywords = random.choice(keywords_list)
+    if isinstance(raw_keywords, unicode):
+        keywords = raw_keywords.encode("utf-8", "ignore")
+        keywords = urllib.quote_plus(keywords)
+    else:
+        keywords = raw_keywords
 
     # Price range
     price_min = request.GET.get('min', settings.PRICE_RANGE_MIN)
